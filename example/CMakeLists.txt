@@ -8,13 +8,10 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../pm4c.cmake)
 pm4c_add_package(
     NAME log4c
     GITHUB adfoke/log4c
+    INCLUDE_DIRS include
 )
 
 add_executable(pm4c_example main.c)
 
 # Link against the library provided by the package
 target_link_libraries(pm4c_example PRIVATE log4c)
-
-# Since log4c doesn't export its include directory properly, we add it manually.
-# FetchContent sets <name>_SOURCE_DIR.
-target_include_directories(pm4c_example PRIVATE ${log4c_SOURCE_DIR}/include)
